@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Outfit:wght@300;400;500;600&display=swap');
+
+:root {
+	--bg: #0f1117;
+	--surface: #1a1d27;
+	--surface2: #222636;
+	--gold: #c9a84c;
+	--gold-light: #e8c97a;
+	--green-text: #a8d8b0;
+	--cream: #f0e6c8;
+	--text: #e2e8f0;
+	--muted: #64748b;
+	--border: rgba(255, 255, 255, 0.07);
+	--radius: 16px;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	font-family: 'Outfit', sans-serif;
+	background-color: var(--bg);
+	color: var(--text);
+	min-height: 100vh;
+}
+
+/* ── View transitions ── */
+@keyframes fade-in {
+	from {
+		opacity: 0;
+		translate: 0 6px;
+	}
+}
+
+@keyframes fade-out {
+	to {
+		opacity: 0;
+		translate: 0 -6px;
+	}
+}
+
+::view-transition-old(root) {
+	animation: 120ms ease-in fade-out;
+}
+
+::view-transition-new(root) {
+	animation: 200ms ease-out fade-in;
+}
