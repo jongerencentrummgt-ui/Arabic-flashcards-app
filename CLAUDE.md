@@ -174,6 +174,16 @@ pnpm install -D @sveltejs/adapter-vercel
 
 ---
 
+## Theming
+
+- Dark theme is the default (`:root` variables in `app.css`)
+- Light theme is applied via `[data-theme="light"]` on the `<html>` element
+- The active theme is managed by `src/lib/stores/theme.js`, which exports `theme` (writable store with resolved value `'dark' | 'light'`), `initTheme()`, and `toggleTheme()`
+- `initTheme()` is called in `+layout.svelte` at startup; reads the override from localStorage (key: `theme`), falls back to `window.matchMedia('(prefers-color-scheme: dark)')`, and listens for system preference changes when no override is set
+- A toggle button (☀︎ / ☽) in the nav calls `toggleTheme()`, which saves the override to localStorage
+
+---
+
 ## Out of Scope
 
 - User accounts or authentication

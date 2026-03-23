@@ -5,10 +5,12 @@
 	import { page } from '$app/stores';
 	import { t } from 'svelte-i18n';
 	import { setupI18n, switchLocale, locale } from '$lib/i18n/index.js';
+	import { initTheme, toggleTheme, theme } from '$lib/stores/theme.js';
 
 	let { children } = $props();
 
 	setupI18n();
+	initTheme();
 
 	onNavigate((navigation) => {
 		if (!document.startViewTransition) return;
@@ -42,6 +44,10 @@
 				</button>
 			{/each}
 		</div>
+
+		<button class="theme-btn" onclick={toggleTheme} title="Toggle theme">
+			{$theme === 'dark' ? '☀︎' : '☽'}
+		</button>
 
 		{#if $page.url.pathname !== '/'}
 			<a href="/" class="nav-home">{$t('nav.home')}</a>
@@ -108,6 +114,24 @@
 
 	.lang-switcher button.active {
 		color: var(--gold-light);
+	}
+
+	.theme-btn {
+		background: none;
+		border: 1px solid var(--border);
+		border-radius: 999px;
+		padding: 0.25rem 0.625rem;
+		font-size: 0.875rem;
+		line-height: 1;
+		color: var(--muted);
+		font-family: inherit;
+		cursor: pointer;
+		transition: border-color 0.15s, color 0.15s;
+	}
+
+	.theme-btn:hover {
+		border-color: var(--gold);
+		color: var(--gold);
 	}
 
 	.nav-home {

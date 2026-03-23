@@ -14,12 +14,29 @@
 	--radius: 16px;
 }
 
+[data-theme='light'] {
+	--bg: #f8f5f0;
+	--surface: #ffffff;
+	--surface2: #f0ece4;
+	--gold: #b8943e;
+	--gold-light: #a07830;
+	--green-text: #2d7a4f;
+	--cream: #5a3e1b;
+	--text: #1a1a2a;
+	--muted: #6b7280;
+	--border: rgba(0, 0, 0, 0.08);
+}
+
 *,
 *::before,
 *::after {
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
+	transition:
+		background-color 0.2s ease,
+		color 0.2s ease,
+		border-color 0.2s ease;
 }
 
 body {
