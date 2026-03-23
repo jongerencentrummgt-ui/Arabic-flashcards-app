@@ -1,4 +1,6 @@
 <script>
+	import { t } from 'svelte-i18n';
+
 	let { term, correctAnswer, onAnswer } = $props();
 
 	let value = $state('');
@@ -43,20 +45,20 @@
 			dir={inputIsArabic ? 'rtl' : 'ltr'}
 			lang={inputIsArabic ? 'ar' : undefined}
 			class:arabic={inputIsArabic}
-			placeholder={inputIsArabic ? 'اكتب الإجابة…' : 'Type the translation…'}
+			placeholder={inputIsArabic ? $t('type_answer.placeholder_ar') : $t('type_answer.placeholder')}
 			autofocus
 		/>
 		<button class="submit-btn" onclick={submit} disabled={result !== null || !value.trim()}>
-			Submit
+			{$t('type_answer.submit')}
 		</button>
 	</div>
 
 	{#if result !== null}
 		<div class="feedback" class:correct={result === 'correct'} class:wrong={result === 'wrong'}>
 			{#if result === 'correct'}
-				<span class="icon">✓</span> Correct!
+				<span class="icon">✓</span> {$t('type_answer.correct')}
 			{:else}
-				<span class="icon">✗</span> Incorrect —
+				<span class="icon">✗</span> {$t('type_answer.incorrect')}
 				<span
 					class:arabic={isArabic(correctAnswer)}
 					lang={isArabic(correctAnswer) ? 'ar' : undefined}
@@ -187,5 +189,6 @@
 		font-family: 'Amiri', serif;
 		font-size: 1.125rem;
 		direction: rtl;
+		display: block;
 	}
 </style>

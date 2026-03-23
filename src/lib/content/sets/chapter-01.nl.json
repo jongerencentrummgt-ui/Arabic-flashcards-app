@@ -1,0 +1,16 @@
+{
+	"id": "chapter-01",
+	"slug": "chapter-01",
+	"cards": [
+		{ "arabic": "مُحَمَّد طَالِب قَدِيم", "translation": "Mohammed is een oude student" },
+		{ "arabic": "هَذَا دَرْس سَهْل", "translation": "Deze les is makkelijk" },
+		{ "arabic": "هَذَا كِتَاب", "translation": "Dit is een boek" },
+		{ "arabic": "أَنَا طَالِب", "translation": "Ik ben een student" },
+		{ "arabic": "هُوَ مُدَرِّس", "translation": "Hij is een leraar" },
+		{ "arabic": "هَذَا بَيْت كَبِير", "translation": "Dit is een groot huis" },
+		{ "arabic": "هِيَ طَالِبَة جَدِيدَة", "translation": "Zij is een nieuwe studente" },
+		{ "arabic": "هَذَا دَرْس جَدِيد", "translation": "Deze les is nieuw" },
+		{ "arabic": "مُحَمَّد مُدَرِّس قَدِيم", "translation": "Mohammed is een oude leraar" },
+		{ "arabic": "هَذَا كِتَاب صَعْب", "translation": "Dit is een moeilijk boek" }
+	]
+}

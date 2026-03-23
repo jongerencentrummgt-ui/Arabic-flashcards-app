@@ -3,10 +3,13 @@
 	import '../app.css';
 	import { onNavigate } from '$app/navigation';
 	import { page } from '$app/stores';
+	import { t } from 'svelte-i18n';
+	import { setupI18n, switchLocale, locale } from '$lib/i18n/index.js';
 
 	let { children } = $props();
 
-	// View Transitions API — graceful no-op in browsers that don't support it.
+	setupI18n();
+
 	onNavigate((navigation) => {
 		if (!document.startViewTransition) return;
 		return new Promise((resolve) => {
@@ -16,6 +19,8 @@
 			});
 		});
 	});
+
+	const langs = ['EN', 'NL', 'TR'];
 </script>
 
 <svelte:head>
@@ -24,10 +29,24 @@
 </svelte:head>
 
 <header class="topnav">
-	<a href="/" class="logo">🕌 Arabic Flashcards</a>
-	{#if $page.url.pathname !== '/'}
-		<a href="/" class="nav-home">Home</a>
-	{/if}
+	<a href="/" class="logo">{$t('nav.logo')}</a>
+
+	<div class="nav-right">
+		<div class="lang-switcher">
+			{#each langs as lang}
+				<button
+					class:active={$locale === lang.toLowerCase()}
+					onclick={() => switchLocale(lang.toLowerCase())}
+				>
+					{lang}
+				</button>
+			{/each}
+		</div>
+
+		{#if $page.url.pathname !== '/'}
+			<a href="/" class="nav-home">{$t('nav.home')}</a>
+		{/if}
+	</div>
 </header>
 
 {@render children()}
@@ -56,6 +75,39 @@
 
 	.logo:hover {
 		color: var(--gold);
+	}
+
+	.nav-right {
+		display: flex;
+		align-items: center;
+		gap: 1.25rem;
+	}
+
+	.lang-switcher {
+		display: flex;
+		gap: 0.125rem;
+	}
+
+	.lang-switcher button {
+		background: none;
+		border: none;
+		padding: 0.25rem 0.5rem;
+		font-family: inherit;
+		font-size: 0.75rem;
+		font-weight: 600;
+		letter-spacing: 0.05em;
+		color: var(--muted);
+		cursor: pointer;
+		border-radius: 4px;
+		transition: color 0.15s;
+	}
+
+	.lang-switcher button:hover {
+		color: var(--text);
+	}
+
+	.lang-switcher button.active {
+		color: var(--gold-light);
 	}
 
 	.nav-home {

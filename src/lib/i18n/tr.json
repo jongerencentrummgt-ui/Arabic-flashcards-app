@@ -1,0 +1,73 @@
+{
+	"nav": {
+		"logo": "🕌 Arabic Flashcards",
+		"home": "Ana Sayfa"
+	},
+	"home": {
+		"heading": "Arapça Flashcard'lar",
+		"subheading": "Çalışmak için bir set seçin",
+		"cards": "{count, plural, one {# kart} other {# kart}}",
+		"progress": "{studied} / {total} çalışıldı",
+		"due_suffix": "· {count} tekrar edilecek",
+		"empty": {
+			"title": "Set bulunamadı",
+			"body": "Başlamak için src/lib/content/sets/ klasörüne bir JSON dosyası ekleyin."
+		}
+	},
+	"set": {
+		"back": "← Tüm setler",
+		"stats": {
+			"studied": "çalışıldı",
+			"due_today": "bugün tekrar edilecek",
+			"mastered": "öğrenildi"
+		},
+		"direction": {
+			"reverse": "Ters: Arapça cevap"
+		},
+		"modes": {
+			"flashcard": "Kelime Kartları",
+			"multiple_choice": "Çoktan Seçmeli",
+			"type_answer": "Cevabı Yaz",
+			"spaced_repetition": "Aralıklı Tekrar"
+		},
+		"all_terms": "Tüm terimler"
+	},
+	"study": {
+		"shuffle": "⇄ Karıştır",
+		"shuffle_title": "Kartları karıştır",
+		"due_chip": "{count} bugün tekrar edilecek",
+		"correct_chip": "{count} doğru",
+		"no_due": "Tekrar edilecek kart yok — tüm kartlar gözden geçiriliyor",
+		"flip_hint": "Çevirmek için tıkla · Boşluk · ← →",
+		"prev": "← Önceki",
+		"next": "Sonraki →",
+		"see_results": "Sonuçları gör",
+		"results": {
+			"done_sr": "Oturum bitti",
+			"done": "Oturum tamamlandı",
+			"reviewed": "{count} kart gözden geçirildi",
+			"pct": "{pct}% doğru",
+			"back": "Sete geri dön",
+			"again_sr": "Tekrar çalış",
+			"again": "Tekrar dene"
+		}
+	},
+	"type_answer": {
+		"placeholder": "Çeviriyi yaz…",
+		"placeholder_ar": "اكتب الإجابة…",
+		"submit": "Gönder",
+		"correct": "Doğru!",
+		"incorrect": "Yanlış —"
+	},
+	"spaced_rep": {
+		"hint": "Görmek için kartı tıkla · Boşluk",
+		"missed": "Kaçırdım",
+		"got_it": "Bildim"
+	},
+	"sets": {
+		"chapter-01": {
+			"title": "Bölüm 1 — Temel Cümleler",
+			"description": "Ders kitabından giriş cümleleri"
+		}
+	}
+}

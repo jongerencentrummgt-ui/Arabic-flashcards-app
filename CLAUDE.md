@@ -53,31 +53,36 @@ CLAUDE.md
 
 ## Card Set Format
 
-Each set is a JSON file in `src/lib/content/sets/`. Example:
+Each set is split into **one file per language** in `src/lib/content/sets/`, named `[slug].[lang].json` (e.g. `chapter-01.nl.json`). Supported language suffixes: `en`, `nl`, `tr`.
+
+The universal field name for the non-Arabic side is `translation` — the language is determined by the filename, not the field name.
 
 ```json
 {
   "id": "chapter-01",
-  "title": "Chapter 1 — Basic Sentences",
-  "description": "Introductory sentences from the textbook",
+  "slug": "chapter-01",
   "cards": [
     {
       "arabic": "مُحَمَّد طَالِب قَدِيم",
-      "dutch": "Mohammed is een oude student"
+      "translation": "Mohammed is an old student"
     },
     {
       "arabic": "هَذَا دَرْس سَهْل",
-      "dutch": "Deze les is makkelijk"
+      "translation": "This lesson is easy"
     }
   ]
 }
 ```
 
+The app loads the file matching the user's active locale (stored in localStorage as `locale`), falling back to `.en.json` if the locale file doesn't exist. Set titles and descriptions are **not** in the JSON — they live in the i18n files under `sets.[slug].title` and `sets.[slug].description`.
+
+When adding a new card set, create `[slug].en.json`, `[slug].nl.json`, and `[slug].tr.json`.
+
 ---
 
 ## Study Modes
 
-The app supports 4 study modes, selectable per session. Each mode supports **both directions**: Arabic → Dutch and Dutch → Arabic.
+The app supports 4 study modes, selectable per session. Each mode supports **both directions**: Arabic → Translation (default) and Translation → Arabic (reverse mode, toggled on the set detail page).
 
 | Mode | Description |
 |---|---|
@@ -152,6 +157,20 @@ pnpm install -D @sveltejs/adapter-vercel
 
 # replace adapter-auto with adapter-vercel in svelte.config.js
 ```
+
+---
+
+## Internationalisation
+
+- UI strings use `svelte-i18n` with three locales: `en`, `nl`, `tr`
+- Translation files live in `src/lib/i18n/` (`en.json`, `nl.json`, `tr.json`)
+- Set titles and descriptions are also translated via i18n, not hardcoded in the JSON files
+- Keys follow the pattern: `sets.[slug].title` and `sets.[slug].description`
+- When adding a new card set: add the slug, title, and description to all 3 locale files (`en.json`, `nl.json`, `tr.json`) in addition to creating the JSON file in `src/lib/content/sets/`
+- Card sets are split per language: `[slug].[locale].json` (e.g. `chapter-01.nl.json`)
+- The active locale is read from localStorage (key: `locale`) to load the matching file
+- Falls back to `[slug].en.json` if the locale file doesn't exist
+- Progress in localStorage is keyed by `[slug].[locale]` so progress is tracked separately per language
 
 ---
 

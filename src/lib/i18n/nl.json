@@ -1,0 +1,73 @@
+{
+	"nav": {
+		"logo": "🕌 Arabic Flashcards",
+		"home": "Home"
+	},
+	"home": {
+		"heading": "Arabische Flashcards",
+		"subheading": "Kies een set om te studeren",
+		"cards": "{count, plural, one {# kaart} other {# kaarten}}",
+		"progress": "{studied} / {total} bestudeerd",
+		"due_suffix": "· {count} te herhalen",
+		"empty": {
+			"title": "Geen sets gevonden",
+			"body": "Voeg een JSON-bestand toe aan src/lib/content/sets/ om te beginnen."
+		}
+	},
+	"set": {
+		"back": "← Alle sets",
+		"stats": {
+			"studied": "bestudeerd",
+			"due_today": "vandaag te herhalen",
+			"mastered": "beheerst"
+		},
+		"direction": {
+			"reverse": "Omgekeerd: Arabisch als antwoord"
+		},
+		"modes": {
+			"flashcard": "Flashcards",
+			"multiple_choice": "Meerkeuze",
+			"type_answer": "Antwoord typen",
+			"spaced_repetition": "Gespreide herhaling"
+		},
+		"all_terms": "Alle termen"
+	},
+	"study": {
+		"shuffle": "⇄ Schudden",
+		"shuffle_title": "Kaarten schudden",
+		"due_chip": "{count} vandaag te herhalen",
+		"correct_chip": "{count} correct",
+		"no_due": "Geen kaarten te herhalen — alle kaarten worden bekeken",
+		"flip_hint": "Klik om te draaien · Spatie · ← →",
+		"prev": "← Vorige",
+		"next": "Volgende →",
+		"see_results": "Resultaten bekijken",
+		"results": {
+			"done_sr": "Sessie klaar",
+			"done": "Sessie voltooid",
+			"reviewed": "{count, plural, one {# kaart bekeken} other {# kaarten bekeken}}",
+			"pct": "{pct}% correct",
+			"back": "Terug naar set",
+			"again_sr": "Opnieuw studeren",
+			"again": "Opnieuw proberen"
+		}
+	},
+	"type_answer": {
+		"placeholder": "Typ de vertaling…",
+		"placeholder_ar": "اكتب الإجابة…",
+		"submit": "Bevestigen",
+		"correct": "Correct!",
+		"incorrect": "Onjuist —"
+	},
+	"spaced_rep": {
+		"hint": "Klik om te onthullen · Spatie",
+		"missed": "Gemist",
+		"got_it": "Gelukt"
+	},
+	"sets": {
+		"chapter-01": {
+			"title": "Hoofdstuk 1 — Basissinnen",
+			"description": "Inleidende zinnen uit het leerboek"
+		}
+	}
+}

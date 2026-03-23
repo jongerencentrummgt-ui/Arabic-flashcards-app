@@ -1,0 +1,73 @@
+{
+	"nav": {
+		"logo": "🕌 Arabic Flashcards",
+		"home": "Home"
+	},
+	"home": {
+		"heading": "Arabic Flashcards",
+		"subheading": "Choose a set to study",
+		"cards": "{count, plural, one {# card} other {# cards}}",
+		"progress": "{studied} / {total} studied",
+		"due_suffix": "· {count} due",
+		"empty": {
+			"title": "No sets found",
+			"body": "Add a JSON file to src/lib/content/sets/ to get started."
+		}
+	},
+	"set": {
+		"back": "← All sets",
+		"stats": {
+			"studied": "studied",
+			"due_today": "due today",
+			"mastered": "mastered"
+		},
+		"direction": {
+			"reverse": "Reverse: Arabic as answer"
+		},
+		"modes": {
+			"flashcard": "Flashcards",
+			"multiple_choice": "Multiple Choice",
+			"type_answer": "Type Answer",
+			"spaced_repetition": "Spaced Repetition"
+		},
+		"all_terms": "All terms"
+	},
+	"study": {
+		"shuffle": "⇄ Shuffle",
+		"shuffle_title": "Shuffle cards",
+		"due_chip": "{count} due today",
+		"correct_chip": "{count} correct",
+		"no_due": "No cards due — reviewing all cards instead",
+		"flip_hint": "Click to flip · Space · ← →",
+		"prev": "← Prev",
+		"next": "Next →",
+		"see_results": "See results",
+		"results": {
+			"done_sr": "Session done",
+			"done": "Session complete",
+			"reviewed": "{count, plural, one {# card reviewed} other {# cards reviewed}}",
+			"pct": "{pct}% correct",
+			"back": "Back to set",
+			"again_sr": "Study again",
+			"again": "Try again"
+		}
+	},
+	"type_answer": {
+		"placeholder": "Type the translation…",
+		"placeholder_ar": "اكتب الإجابة…",
+		"submit": "Submit",
+		"correct": "Correct!",
+		"incorrect": "Incorrect —"
+	},
+	"spaced_rep": {
+		"hint": "Click card to reveal · Space",
+		"missed": "Missed it",
+		"got_it": "Got it"
+	},
+	"sets": {
+		"chapter-01": {
+			"title": "Chapter 1 — Basic Sentences",
+			"description": "Introductory sentences from the textbook"
+		}
+	}
+}

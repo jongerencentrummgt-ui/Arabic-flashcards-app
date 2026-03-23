@@ -1,14 +1,20 @@
 <script>
+	import { t } from 'svelte-i18n';
 	import { getSetStats } from '$lib/stores/progress.js';
 
 	const modules = import.meta.glob('$lib/content/sets/*.json', { eager: true });
 
-	const sets = Object.entries(modules).map(([path, module]) => {
-		const slug = path.split('/').at(-1).replace('.json', '');
-		return { slug, ...module.default };
-	});
+	// Deduplicate: one entry per base slug (strip language suffix, e.g. "chapter-01.nl" → "chapter-01")
+	const seen = new Set();
+	const sets = [];
+	for (const [path, module] of Object.entries(modules)) {
+		const filename = path.split('/').at(-1).replace('.json', '');
+		const slug = filename.replace(/\.(en|nl|tr)$/, '');
+		if (seen.has(slug)) continue;
+		seen.add(slug);
+		sets.push({ slug, ...module.default });
+	}
 
-	// Populated client-side only (localStorage unavailable during SSR).
 	let statsMap = $state({});
 
 	$effect(() => {
@@ -26,23 +32,23 @@
 
 <main>
 	<header>
-		<h1>Arabic Flashcards</h1>
-		<p>Choose a set to study</p>
+		<h1>{$t('home.heading')}</h1>
+		<p>{$t('home.subheading')}</p>
 	</header>
 
 	{#if sets.length === 0}
 		<div class="empty">
 			<p class="empty-icon">📭</p>
-			<p class="empty-title">No sets found</p>
-			<p class="empty-body">Add a JSON file to <code>src/lib/content/sets/</code> to get started.</p>
+			<p class="empty-title">{$t('home.empty.title')}</p>
+			<p class="empty-body">{$t('home.empty.body')}</p>
 		</div>
 	{:else}
 		<div class="grid">
 			{#each sets as set}
 				{@const stats = statsMap[set.slug]}
 				<a href="/sets/{set.slug}" class="card">
-					<h2>{set.title}</h2>
-					<p class="description">{set.description}</p>
+					<h2>{$t(`sets.${set.slug}.title`)}</h2>
+					<p class="description">{$t(`sets.${set.slug}.description`)}</p>
 
 					{#if stats?.studied > 0}
 						<div class="progress-row">
@@ -53,11 +59,13 @@
 								></div>
 							</div>
 							<span class="progress-label">
-								{stats.studied} / {set.cards.length} studied{stats.due > 0 ? ` · ${stats.due} due` : ''}
+								{$t('home.progress', { values: { studied: stats.studied, total: set.cards.length } })}{stats.due > 0
+									? ` ${$t('home.due_suffix', { values: { count: stats.due } })}`
+									: ''}
 							</span>
 						</div>
 					{:else}
-						<span class="count">{set.cards.length} cards</span>
+						<span class="count">{$t('home.cards', { values: { count: set.cards.length } })}</span>
 					{/if}
 				</a>
 			{/each}
@@ -130,37 +138,6 @@
 		font-weight: 500;
 	}
 
-	.empty {
-		text-align: center;
-		padding: 4rem 1rem;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 0.625rem;
-	}
-
-	.empty-icon {
-		font-size: 2.5rem;
-		margin-bottom: 0.25rem;
-	}
-
-	.empty-title {
-		font-size: 1.125rem;
-		font-weight: 500;
-		color: var(--text);
-	}
-
-	.empty-body {
-		font-size: 0.875rem;
-		color: var(--muted);
-	}
-
-	.empty-body code {
-		font-family: monospace;
-		color: var(--gold);
-		font-size: 0.8125rem;
-	}
-
 	.progress-row {
 		display: flex;
 		flex-direction: column;
@@ -183,6 +160,31 @@
 
 	.progress-label {
 		font-size: 0.75rem;
+		color: var(--muted);
+	}
+
+	.empty {
+		text-align: center;
+		padding: 4rem 1rem;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.625rem;
+	}
+
+	.empty-icon {
+		font-size: 2.5rem;
+		margin-bottom: 0.25rem;
+	}
+
+	.empty-title {
+		font-size: 1.125rem;
+		font-weight: 500;
+		color: var(--text);
+	}
+
+	.empty-body {
+		font-size: 0.875rem;
 		color: var(--muted);
 	}
 </style>

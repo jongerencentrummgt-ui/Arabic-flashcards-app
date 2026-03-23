@@ -1,0 +1,16 @@
+{
+	"id": "chapter-01",
+	"slug": "chapter-01",
+	"cards": [
+		{ "arabic": "مُحَمَّد طَالِب قَدِيم", "translation": "Muhammed eski bir öğrencidir" },
+		{ "arabic": "هَذَا دَرْس سَهْل", "translation": "Bu ders kolaydır" },
+		{ "arabic": "هَذَا كِتَاب", "translation": "Bu bir kitaptır" },
+		{ "arabic": "أَنَا طَالِب", "translation": "Ben bir öğrenciyim" },
+		{ "arabic": "هُوَ مُدَرِّس", "translation": "O bir öğretmendir" },
+		{ "arabic": "هَذَا بَيْت كَبِير", "translation": "Bu büyük bir evdir" },
+		{ "arabic": "هِيَ طَالِبَة جَدِيدَة", "translation": "O yeni bir öğrencidir" },
+		{ "arabic": "هَذَا دَرْس جَدِيد", "translation": "Bu yeni bir derstir" },
+		{ "arabic": "مُحَمَّد مُدَرِّس قَدِيم", "translation": "Muhammed eski bir öğretmendir" },
+		{ "arabic": "هَذَا كِتَاب صَعْب", "translation": "Bu zor bir kitaptır" }
+	]
+}

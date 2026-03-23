@@ -1,4 +1,5 @@
 <script>
+	import { t } from 'svelte-i18n';
 	import Flashcard from './Flashcard.svelte';
 
 	let { term, translation, onAnswer } = $props();
@@ -15,14 +16,14 @@
 	<Flashcard {term} {translation} {flipped} onclick={flip} />
 
 	{#if !flipped}
-		<p class="hint">Click card to reveal · Space</p>
+		<p class="hint">{$t('spaced_rep.hint')}</p>
 	{:else}
 		<div class="rating">
 			<button class="miss" onclick={() => onAnswer(false)}>
-				<span class="icon">✗</span> Missed it
+				<span class="icon">✗</span> {$t('spaced_rep.missed')}
 			</button>
 			<button class="got" onclick={() => onAnswer(true)}>
-				<span class="icon">✓</span> Got it
+				<span class="icon">✓</span> {$t('spaced_rep.got_it')}
 			</button>
 		</div>
 	{/if}

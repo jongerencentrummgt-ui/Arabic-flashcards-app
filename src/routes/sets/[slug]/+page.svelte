@@ -1,19 +1,45 @@
 <script>
+	import { t, locale } from 'svelte-i18n';
 	import { getSetStats } from '$lib/stores/progress.js';
 
 	let { data } = $props();
-	const { slug, set } = data;
+	const slug = $derived(data.slug);
+	const set = $derived(data.set);
 
-	let direction = $state('ar-nl');
+	// ── Locale-reactive card list ─────────────────────────────────
+	const allModules = import.meta.glob('$lib/content/sets/*.json');
+	let localCards = $state(data.set.cards);
+	let localeReady = false;
+
+	$effect(() => {
+		const loc = $locale;
+		if (!localeReady) { localeReady = true; return; }
+
+		let cancelled = false;
+		async function reload() {
+			const target = `${slug}.${loc}.json`;
+			const fallback = `${slug}.en.json`;
+			const entry =
+				Object.entries(allModules).find(([p]) => p.split('/').at(-1) === target) ??
+				Object.entries(allModules).find(([p]) => p.split('/').at(-1) === fallback);
+			if (!entry) return;
+			const m = await entry[1]();
+			if (!cancelled) localCards = m.default.cards;
+		}
+		reload();
+		return () => { cancelled = true; };
+	});
+
+	let reverse = $state(false);
+	const direction = $derived(reverse ? 'tl-ar' : 'ar-tl');
 
 	const modes = [
-		{ label: 'Flashcards', value: 'flashcard' },
-		{ label: 'Multiple Choice', value: 'multiple-choice' },
-		{ label: 'Type Answer', value: 'type-answer' },
-		{ label: 'Spaced Repetition', value: 'spaced-repetition' }
+		{ key: 'set.modes.flashcard', value: 'flashcard' },
+		{ key: 'set.modes.multiple_choice', value: 'multiple-choice' },
+		{ key: 'set.modes.type_answer', value: 'type-answer' },
+		{ key: 'set.modes.spaced_repetition', value: 'spaced-repetition' }
 	];
 
-	// Populated client-side only.
 	let stats = $state(null);
 
 	$effect(() => {
@@ -22,54 +48,44 @@
 </script>
 
 <svelte:head>
-	<title>{set.title} — Arabic Flashcards</title>
+	<title>{$t(`sets.${slug}.title`)} — Arabic Flashcards</title>
 </svelte:head>
 
 <main>
 	<nav>
-		<a href="/" class="back">← All sets</a>
+		<a href="/" class="back">{$t('set.back')}</a>
 	</nav>
 
 	<header>
-		<h1>{set.title}</h1>
-		<p class="description">{set.description}</p>
-		<span class="count">{set.cards.length} cards</span>
+		<h1>{$t(`sets.${slug}.title`)}</h1>
+		<p class="description">{$t(`sets.${slug}.description`)}</p>
+		<span class="count">{$t('home.cards', { values: { count: set.cards.length } })}</span>
 
 		{#if stats?.studied > 0}
 			<div class="stats-bar">
 				<span class="stat">
 					<span class="stat-value">{stats.studied} / {set.cards.length}</span>
-					<span class="stat-label">studied</span>
+					<span class="stat-label">{$t('set.stats.studied')}</span>
 				</span>
 				<span class="stat-divider">·</span>
 				<span class="stat" class:stat-due={stats.due > 0}>
 					<span class="stat-value">{stats.due}</span>
-					<span class="stat-label">due today</span>
+					<span class="stat-label">{$t('set.stats.due_today')}</span>
 				</span>
 				<span class="stat-divider">·</span>
 				<span class="stat">
 					<span class="stat-value">{stats.mastered}</span>
-					<span class="stat-label">mastered</span>
+					<span class="stat-label">{$t('set.stats.mastered')}</span>
 				</span>
 			</div>
 		{/if}
 	</header>
 
 	<section class="study">
-		<div class="direction-toggle">
-			<button
-				class:active={direction === 'ar-nl'}
-				onclick={() => (direction = 'ar-nl')}
-			>
-				Arabic → Dutch
-			</button>
-			<button
-				class:active={direction === 'nl-ar'}
-				onclick={() => (direction = 'nl-ar')}
-			>
-				Dutch → Arabic
-			</button>
-		</div>
+		<label class="reverse-toggle">
+			<input type="checkbox" bind:checked={reverse} />
+			{$t('set.direction.reverse')}
+		</label>
 
 		<div class="modes">
 			{#each modes as mode}
@@ -80,7 +96,7 @@
 					class="mode-btn"
 					class:mode-due={hasDue}
 				>
-					{mode.label}
+					{$t(mode.key)}
 					{#if hasDue}
 						<span class="due-badge">{stats.due}</span>
 					{/if}
@@ -90,12 +106,12 @@
 	</section>
 
 	<section class="card-list">
-		<h2>All terms</h2>
+		<h2>{$t('set.all_terms')}</h2>
 		<ul>
-			{#each set.cards as card}
+			{#each localCards as card}
 				<li>
 					<span class="arabic" lang="ar">{card.arabic}</span>
-					<span class="dutch">{card.dutch}</span>
+					<span class="dutch">{card.translation}</span>
 				</li>
 			{/each}
 		</ul>
@@ -189,28 +205,22 @@
 		margin-bottom: 3rem;
 	}
 
-	.direction-toggle {
+	.reverse-toggle {
 		display: flex;
+		align-items: center;
 		gap: 0.5rem;
 		margin-bottom: 1.25rem;
-	}
-
-	.direction-toggle button {
-		padding: 0.4rem 1rem;
-		border-radius: 999px;
-		border: 1px solid var(--border);
-		background: var(--surface);
-		color: var(--muted);
-		font-family: inherit;
 		font-size: 0.875rem;
+		color: var(--muted);
 		cursor: pointer;
-		transition: border-color 0.15s, color 0.15s, background 0.15s;
+		user-select: none;
 	}
 
-	.direction-toggle button.active {
-		border-color: var(--gold);
-		color: var(--gold);
-		background: var(--surface2);
+	.reverse-toggle input {
+		accent-color: var(--gold);
+		width: 1rem;
+		height: 1rem;
+		cursor: pointer;
 	}
 
 	.modes {
@@ -261,13 +271,12 @@
 	/* ── Card list ── */
 
 	.card-list h2 {
-		font-size: 1rem;
+		font-size: 0.75rem;
 		font-weight: 500;
 		color: var(--muted);
 		margin-bottom: 1rem;
 		text-transform: uppercase;
 		letter-spacing: 0.05em;
-		font-size: 0.75rem;
 	}
 
 	ul {
