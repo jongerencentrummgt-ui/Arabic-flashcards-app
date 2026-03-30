@@ -30,6 +30,8 @@
 		return () => { cancelled = true; };
 	});
 
+	const isArabicSet = data.set.cards[0]?.arabic !== undefined;
+
 	let reverse = $state(false);
 	const direction = $derived(reverse ? 'tl-ar' : 'ar-tl');
 
@@ -82,10 +84,12 @@
 	</header>
 
 	<section class="study">
-		<label class="reverse-toggle">
-			<input type="checkbox" bind:checked={reverse} />
-			{$t('set.direction.reverse')}
-		</label>
+		{#if isArabicSet}
+			<label class="reverse-toggle">
+				<input type="checkbox" bind:checked={reverse} />
+				{$t('set.direction.reverse')}
+			</label>
+		{/if}
 
 		<div class="modes">
 			{#each modes as mode}
