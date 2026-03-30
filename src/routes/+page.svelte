@@ -15,6 +15,9 @@
 		sets.push({ slug, ...module.default });
 	}
 
+	const arabicSets = sets.filter((s) => s.cards[0]?.arabic !== undefined);
+	const diniSets = sets.filter((s) => s.cards[0]?.term !== undefined);
+
 	let statsMap = $state({});
 
 	$effect(() => {
@@ -33,7 +36,6 @@
 <main>
 	<header>
 		<h1>{$t('home.heading')}</h1>
-		<p>{$t('home.subheading')}</p>
 	</header>
 
 	{#if sets.length === 0}
@@ -43,33 +45,55 @@
 			<p class="empty-body">{$t('home.empty.body')}</p>
 		</div>
 	{:else}
-		<div class="grid">
-			{#each sets as set}
-				{@const stats = statsMap[set.slug]}
-				<a href="/sets/{set.slug}" class="card">
-					<h2>{$t(`sets.${set.slug}.title`)}</h2>
-					<p class="description">{$t(`sets.${set.slug}.description`)}</p>
+		{#snippet setGrid(list)}
+			<div class="grid">
+				{#each list as set}
+					{@const stats = statsMap[set.slug]}
+					<a href="/sets/{set.slug}" class="card">
+						<h2>{$t(`sets.${set.slug}.title`)}</h2>
+						<p class="description">{$t(`sets.${set.slug}.description`)}</p>
 
-					{#if stats?.studied > 0}
-						<div class="progress-row">
-							<div class="progress-track">
-								<div
-									class="progress-fill"
-									style="width: {(stats.studied / set.cards.length) * 100}%"
-								></div>
+						{#if stats?.studied > 0}
+							<div class="progress-row">
+								<div class="progress-track">
+									<div
+										class="progress-fill"
+										style="width: {(stats.studied / set.cards.length) * 100}%"
+									></div>
+								</div>
+								<span class="progress-label">
+									{$t('home.progress', { values: { studied: stats.studied, total: set.cards.length } })}{stats.due > 0
+										? ` ${$t('home.due_suffix', { values: { count: stats.due } })}`
+										: ''}
+								</span>
 							</div>
-							<span class="progress-label">
-								{$t('home.progress', { values: { studied: stats.studied, total: set.cards.length } })}{stats.due > 0
-									? ` ${$t('home.due_suffix', { values: { count: stats.due } })}`
-									: ''}
-							</span>
-						</div>
-					{:else}
-						<span class="count">{$t('home.cards', { values: { count: set.cards.length } })}</span>
-					{/if}
-				</a>
-			{/each}
-		</div>
+						{:else}
+							<span class="count">{$t('home.cards', { values: { count: set.cards.length } })}</span>
+						{/if}
+					</a>
+				{/each}
+			</div>
+		{/snippet}
+
+		{#if arabicSets.length > 0}
+			<section>
+				<div class="section-header">
+					<h2>{$t('home.section_arabic')}</h2>
+					<p>{$t('home.section_arabic_sub')}</p>
+				</div>
+				{@render setGrid(arabicSets)}
+			</section>
+		{/if}
+
+		{#if diniSets.length > 0}
+			<section class:section-gap={arabicSets.length > 0}>
+				<div class="section-header">
+					<h2>{$t('home.section_dini')}</h2>
+					<p>{$t('home.section_dini_sub')}</p>
+				</div>
+				{@render setGrid(diniSets)}
+			</section>
+		{/if}
 	{/if}
 </main>
 
@@ -88,12 +112,28 @@
 		font-size: 2rem;
 		font-weight: 600;
 		color: var(--gold);
-		margin-bottom: 0.375rem;
 	}
 
-	header p {
+	.section-gap {
+		margin-top: 3rem;
+		padding-top: 3rem;
+		border-top: 1px solid var(--border);
+	}
+
+	.section-header {
+		margin-bottom: 1.5rem;
+	}
+
+	.section-header h2 {
+		font-size: 1.25rem;
+		font-weight: 600;
+		color: var(--text);
+		margin-bottom: 0.25rem;
+	}
+
+	.section-header p {
+		font-size: 0.875rem;
 		color: var(--muted);
-		font-size: 1rem;
 	}
 
 	.grid {

@@ -1,0 +1,16 @@
+{
+  "id": "dini-kavramlar",
+  "slug": "dini-kavramlar",
+  "cards": [
+    { "term": "Faith", "translation": "Belief in Allah, His angels, His books, His prophets, the Hereafter, and divine decree" },
+    { "term": "Prayer", "translation": "The five daily acts of worship performed at prescribed times" },
+    { "term": "Fasting", "translation": "Refraining from food and drink from dawn to sunset throughout Ramadan" },
+    { "term": "Zakah", "translation": "Obligatory charity given by Muslims who possess wealth above the minimum threshold" },
+    { "term": "Hajj", "translation": "The pilgrimage to Mecca, obligatory once in a lifetime for those who are able" },
+    { "term": "Tawhid", "translation": "The belief in the absolute oneness and uniqueness of Allah" },
+    { "term": "Repentance", "translation": "Feeling remorse for one's sins and sincerely turning back to Allah" },
+    { "term": "Supplication", "translation": "Calling upon Allah and making requests of Him" },
+    { "term": "Patience", "translation": "Enduring hardship and difficulty without complaint" },
+    { "term": "Gratitude", "translation": "Being thankful for the blessings and favours of Allah" }
+  ]
+}

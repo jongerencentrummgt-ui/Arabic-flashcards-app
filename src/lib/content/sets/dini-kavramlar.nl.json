@@ -1,0 +1,16 @@
+{
+  "id": "dini-kavramlar",
+  "slug": "dini-kavramlar",
+  "cards": [
+    { "term": "Geloof", "translation": "Geloven in Allah, Zijn engelen, Zijn boeken, Zijn profeten, het Hiernamaals en de goddelijke beschikking" },
+    { "term": "Gebed", "translation": "De vijf dagelijkse gebeden die worden verricht als daad van aanbidding" },
+    { "term": "Vasten", "translation": "Zich gedurende de maand Ramadan overdag onthouden van eten en drinken" },
+    { "term": "Zakat", "translation": "Verplichte liefdadigheid die moslims met voldoende vermogen aan de armen geven" },
+    { "term": "Hadj", "translation": "De bedevaart naar Mekka, die eenmaal in het leven verplicht is" },
+    { "term": "Tawhid", "translation": "Het geloof in de eenheid en uniciteit van Allah" },
+    { "term": "Berouw", "translation": "Spijt hebben van zonden en terugkeren tot Allah" },
+    { "term": "Smeekbede", "translation": "Allah aanroepen en Hem om iets vragen" },
+    { "term": "Geduld", "translation": "Moeilijkheden verdragen zonder te klagen" },
+    { "term": "Dankbaarheid", "translation": "Dankbaar zijn voor de gunsten van Allah" }
+  ]
+}

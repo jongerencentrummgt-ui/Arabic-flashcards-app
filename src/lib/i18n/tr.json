@@ -9,6 +9,10 @@
 		"cards": "{count, plural, one {# kart} other {# kart}}",
 		"progress": "{studied} / {total} çalışıldı",
 		"due_suffix": "· {count} tekrar edilecek",
+		"section_arabic": "Arapça Flashcard'lar",
+		"section_arabic_sub": "Arapça cümle ve kelime pratiği",
+		"section_dini": "Dini Kavramlar",
+		"section_dini_sub": "İslami kavramlar ve terimler",
 		"empty": {
 			"title": "Set bulunamadı",
 			"body": "Başlamak için src/lib/content/sets/ klasörüne bir JSON dosyası ekleyin."
@@ -68,6 +72,10 @@
 		"chapter-01": {
 			"title": "Bölüm 1 — Temel Cümleler",
 			"description": "Ders kitabından giriş cümleleri"
+		},
+		"dini-kavramlar": {
+			"title": "Dini Kavramlar",
+			"description": "İslam inancının temel kavramları ve esasları"
 		}
 	}
 }

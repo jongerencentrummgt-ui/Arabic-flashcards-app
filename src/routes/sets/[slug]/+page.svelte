@@ -109,8 +109,10 @@
 		<h2>{$t('set.all_terms')}</h2>
 		<ul>
 			{#each localCards as card}
+				{@const termText = card.arabic ?? card.term}
+				{@const termIsArabic = /[\u0600-\u06FF]/.test(termText)}
 				<li>
-					<span class="arabic" lang="ar">{card.arabic}</span>
+					<span class:arabic={termIsArabic} lang={termIsArabic ? 'ar' : undefined}>{termText}</span>
 					<span class="dutch">{card.translation}</span>
 				</li>
 			{/each}

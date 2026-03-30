@@ -9,6 +9,10 @@
 		"cards": "{count, plural, one {# kaart} other {# kaarten}}",
 		"progress": "{studied} / {total} bestudeerd",
 		"due_suffix": "· {count} te herhalen",
+		"section_arabic": "Arabische Flashcards",
+		"section_arabic_sub": "Oefen Arabische zinnen en woordenschat",
+		"section_dini": "Religieuze Begrippen",
+		"section_dini_sub": "Islamitische begrippen en terminologie",
 		"empty": {
 			"title": "Geen sets gevonden",
 			"body": "Voeg een JSON-bestand toe aan src/lib/content/sets/ om te beginnen."
@@ -68,6 +72,10 @@
 		"chapter-01": {
 			"title": "Hoofdstuk 1 — Basissinnen",
 			"description": "Inleidende zinnen uit het leerboek"
+		},
+		"dini-kavramlar": {
+			"title": "Dini Kavramlar",
+			"description": "Kernbegrippen en zuilen van het islamitisch geloof"
 		}
 	}
 }

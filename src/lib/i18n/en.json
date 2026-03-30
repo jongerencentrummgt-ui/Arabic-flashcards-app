@@ -9,6 +9,10 @@
 		"cards": "{count, plural, one {# card} other {# cards}}",
 		"progress": "{studied} / {total} studied",
 		"due_suffix": "· {count} due",
+		"section_arabic": "Arabic Flashcards",
+		"section_arabic_sub": "Practice Arabic sentences and vocabulary",
+		"section_dini": "Religious Concepts",
+		"section_dini_sub": "Islamic concepts and terminology",
 		"empty": {
 			"title": "No sets found",
 			"body": "Add a JSON file to src/lib/content/sets/ to get started."
@@ -68,6 +72,10 @@
 		"chapter-01": {
 			"title": "Chapter 1 — Basic Sentences",
 			"description": "Introductory sentences from the textbook"
+		},
+		"dini-kavramlar": {
+			"title": "Dini Kavramlar",
+			"description": "Key concepts and pillars of Islamic faith"
 		}
 	}
 }

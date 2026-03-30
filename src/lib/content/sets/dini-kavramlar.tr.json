@@ -1,0 +1,16 @@
+{
+  "id": "dini-kavramlar",
+  "slug": "dini-kavramlar",
+  "cards": [
+    { "term": "İman", "translation": "Allah'a, meleklere, kitaplara, peygamberlere, ahirete ve kadere inanmak" },
+    { "term": "Namaz", "translation": "Günde beş vakit kılınan ibadet" },
+    { "term": "Oruç", "translation": "Ramazan ayında gün boyu yemek ve içmekten uzak durmak" },
+    { "term": "Zekat", "translation": "Belirli miktarda mala sahip Müslümanların fakirlere vermesi gereken mali ibadet" },
+    { "term": "Hac", "translation": "Mekke'ye yapılan ve ömürde bir kez farz olan ziyaret" },
+    { "term": "Tevhid", "translation": "Allah'ın bir ve tek olduğuna inanmak" },
+    { "term": "Tövbe", "translation": "Günahlardan pişmanlık duyup Allah'a dönmek" },
+    { "term": "Dua", "translation": "Allah'a yalvarmak ve istekte bulunmak" },
+    { "term": "Sabır", "translation": "Zorluklara karşı dayanmak ve şikâyet etmemek" },
+    { "term": "Şükür", "translation": "Allah'ın nimetlerine karşı minnettar olmak" }
+  ]
+}

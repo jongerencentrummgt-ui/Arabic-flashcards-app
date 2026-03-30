@@ -78,6 +78,8 @@ The app loads the file matching the user's active locale (stored in localStorage
 
 When adding a new card set, create `[slug].en.json`, `[slug].nl.json`, and `[slug].tr.json`.
 
+Sets without Arabic content use `"term"` and `"translation"` fields instead of `"arabic"` and `"translation"`. The Arabic detection regex (`/[\u0600-\u06FF]/`) handles font and direction rendering automatically in all components.
+
 ---
 
 ## Study Modes

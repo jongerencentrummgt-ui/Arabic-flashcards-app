@@ -15,8 +15,8 @@
 	// Build card list: term = shown on front, translation = revealed on back.
 	const toCard = (c) =>
 		direction === 'ar-tl'
-			? { term: c.arabic, translation: c.translation }
-			: { term: c.translation, translation: c.arabic };
+			? { term: c.arabic ?? c.term, translation: c.translation }
+			: { term: c.translation, translation: c.arabic ?? c.term };
 
 	function fisherYates(arr) {
 		const a = [...arr];
